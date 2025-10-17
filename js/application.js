@@ -31,8 +31,9 @@ const showWeather= async(data)=>{
     const temp_text = document.getElementById("temp");
     const wind = document.getElementById("wind")
     const more_info = document.getElementById("info");
-
+    const weather_img = document.getElementById("weather-img")
     location_text.textContent = data.name;
+    weather_img.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`
     temp_text.textContent = `Temperature: ${Math.round(data.main.temp)}°C`;
     wind.textContent = `Wind Speed: ${data.wind.speed} m/s`
     more_info.textContent =`Clarity: ${data.weather[0].description}`;
