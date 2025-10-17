@@ -1,0 +1,10 @@
+body {
+    font-family: 'Ariana', sans-serif;
+    background-color: #ffefee;
+}
+.top-bar{
+    background-color: rgb(237, 250, 226);
+}
+.weather-out{
+    background-color: #feecc7;
+}

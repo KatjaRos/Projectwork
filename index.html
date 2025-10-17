@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <!-- Project work 2, Weather application, Katja Rossi 1067110-->
+ <!-- got help from: https://www.geeksforgeeks.org/javascript/build-a-weather-app-in-html-css-javascript/ -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
+        <link rel="stylesheet" href="css/styles.css">
         
         <title>Weather application</title>
     </head>
 
     <body>
-        
+        <div class="container">
+            <div class="top-bar">
+                <h1>
+                    Weather application
+                </h1>
+                <input id="location-input" placeholder="Enter location">
+                <button id="location-submit">Search</button>
+
+            </div>
+            <div class="weather-out">
+                <h3 id="location"></h3>
+                <p id="temp"></p>
+                <p id="wind"></p>
+                <p id="info"></p>
+            </div>
+        </div>
 
         <script src="js/application.js" defer></script>
     </body>
