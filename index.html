@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <!-- Project work 2, Weather application, Katja Rossi 1067110-->
- <!-- got help from: https://www.geeksforgeeks.org/javascript/build-a-weather-app-in-html-css-javascript/ -->
+ <!-- got help from: https://www.geeksforgeeks.org/javascript/build-a-weather-app-in-html-css-javascript/
+  and from:  https://www.w3schools.com/html/html5_geolocation.asp 
+  API:s  from: 
+  www.meteoblue.com,
+  https://openweathermap.org/current
+  geolocation from browser
+  -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -20,13 +26,22 @@
                 <button id="location-submit">Search</button>
 
             </div>
-            <div class="weather-out">
+            <div class="weather-out-current">
                 <h3 id="location"></h3>
                 <img id="weather-img" src="">
                 <p id="temp"></p>
                 <p id="wind"></p>
                 <p id="info"></p>
             </div>
+            <div class="weather-out-future">
+                <h3>7 Day Forecast</h3>
+                <div id="future-days" class="future-days-container"></div>
+                <ul id="items_list"></ul>
+                <div id="meteogram-container">
+                    <img id="meteogram" alt="7 day forecast" />
+            </div>
+        </div>
+
         </div>
 
         <script src="js/application.js" defer></script>
