@@ -82,129 +82,117 @@ const getFutureData= async() =>{
 };
 
 const showFutureWeather = (data, latitude, longitude) => {
-    const weather_items_list = document.getElementById("items_list");
+    const weather_items_list = document.getElementById("items-list");
     weather_items_list.innerHTML = "";
 
     const times = data.data_1h.time;
     const temps = data.data_1h.temperature;
     const icons = data.data_1h.pictocode;
     const rainProbs = data.data_1h.precipitation_probability;
-    const isDaylightArr = data.data_1h.isdaylight;
     
     const pic = {
         //used chatgpt and 
     // https://content.meteoblue.com/en/research-education/specifications/standards/symbols-and-pictograms
     // and downloaded zip of icons fro the page and used chatgpt for a little help with the come implementation
-        "1_day": "js/01_day.png",
-        "1_night": "js/01_night.png",
-        "2_day": "js/02_day.png",
-        "2_night": "js/02_night.png",
-        "3_day": "js/03_day.png",
-        "3_night": "js/03_night.png",
-        "4_day": "js/04_day.png",
-        "4_night": "js/04_night.png",
-        "5_day": "js/05_day.png",
-        "5_night": "js/05_night.png",
-        "6_day": "js/06_day.png",
-        "6_night": "js/06_night.png",
-        "7_day": "js/07_day.png",
-        "7_night": "js/07_night.png",
-        "8_day": "js/08_day.png",
-        "8_night": "js/08_night.png",
-        "9_day": "js/09_day.png",
-        "9_night": "js/09_night.png",
-        "10_day": "js/10_day.png",
-        "10_night": "js/10_night.png",
-        "11_day": "js/11_day.png",
-        "11_night": "js/11_night.png",
-        "12_day": "js/12_day.png",
-        "12_night": "js/12_night.png",
-        "13_day": "js/13_day.png",
-        "13_night": "js/13_night.png",
-        "14_day": "js/14_day.png",
-        "14_night": "js/14_night.png",
-        "15_day": "js/15_day.png",
-        "15_night": "js/15_night.png",
-        "16_day": "js/16_day.png",
-        "16_night": "js/16_night.png",
-        "17_day": "js/17_day.png",
-        "17_night": "js/17_night.png",
-        "18_day": "js/18_day.png",
-        "18_night": "js/18_night.png",
-        "19_day": "js/19_day.png",
-        "19_night": "js/19_night.png",
-        "20_day": "js/20_day.png",
-        "20_night": "js/20_night.png",
-        "21_day": "js/21_day.png",
-        "21_night": "js/21_night.png",
-        "22_day": "js/22_day.png",
-        "22_night": "js/22_night.png",
-        "23_day": "js/23_day.png",
-        "23_night": "js/23_night.png",
-        "24_day": "js/24_day.png",
-        "24_night": "js/24_night.png",
-        "25_day": "js/25_day.png",
-        "25_night": "js/25_night.png",
-        "26_day": "js/26_day.png",
-        "26_night": "js/26_night.png",
-        "27_day": "js/27_day.png",
-        "27_night": "js/27_night.png",
-        "28_day": "js/28_day.png",
-        "28_night": "js/28_night.png",
-        "29_day": "js/29_day.png",
-        "29_night": "js/29_night.png",
-        "30_day": "js/30_day.png",
-        "30_night": "js/30_night.png",
-        "31_day": "js/31_day.png",
-        "31_night": "js/31_night.png",
-        "32_day": "js/32_day.png",
-        "32_night": "js/32_night.png",
-        "33_day": "js/33_day.png",
-        "33_night": "js/33_night.png",
-        "34_day": "js/34_day.png",
-        "34_night": "js/34_night.png",
-        "35_day": "js/35_day.png",
-        "35_night": "js/35_night.png",
-        "default": "js/day.png" 
+        "1_day": "media/01_day.png",
+        "1_night": "media/01_night.png",
+        "2_day": "media/02_day.png",
+        "2_night": "media/02_night.png",
+        "3_day": "media/03_day.png",
+        "3_night": "media/03_night.png",
+        "4_day": "media/04_day.png",
+        "4_night": "media/04_night.png",
+        "5_day": "media/05_day.png",
+        "5_night": "media/05_night.png",
+        "6_day": "media/06_day.png",
+        "6_night": "media/06_night.png",
+        "7_day": "media/07_day.png",
+        "7_night": "media/07_night.png",
+        "8_day": "media/08_day.png",
+        "8_night": "media/08_night.png",
+        "9_day": "media/09_day.png",
+        "9_night": "media/09_night.png",
+        "10_day": "media/10_day.png",
+        "10_night": "media/10_night.png",
+        "11_day": "media/11_day.png",
+        "11_night": "media/11_night.png",
+        "12_day": "media/12_day.png",
+        "12_night": "media/12_night.png",
+        "13_day": "media/13_day.png",
+        "13_night": "media/13_night.png",
+        "14_day": "media/14_day.png",
+        "14_night": "media/14_night.png",
+        "15_day": "media/15_day.png",
+        "15_night": "media/15_night.png",
+        "16_day": "media/16_day.png",
+        "16_night": "media/16_night.png",
+        "17_day": "media/17_day.png",
+        "17_night": "media/17_night.png",
+        "18_day": "media/18_day.png",
+        "18_night": "media/18_night.png",
+        "19_day": "media/19_day.png",
+        "19_night": "media/19_night.png",
+        "20_day": "media/20_day.png",
+        "20_night": "media/20_night.png",
+        "21_day": "media/21_day.png",
+        "21_night": "media/21_night.png",
+        "22_day": "media/22_day.png",
+        "22_night": "media/22_night.png",
+        "23_day": "media/23_day.png",
+        "23_night": "media/23_night.png",
+        "24_day": "media/24_day.png",
+        "24_night": "media/24_night.png",
+        "25_day": "media/25_day.png",
+        "25_night": "media/25_night.png",
+        "26_day": "media/26_day.png",
+        "26_night": "media/26_night.png",
+        "27_day": "media/27_day.png",
+        "27_night": "media/27_night.png",
+        "28_day": "media/28_day.png",
+        "28_night": "media/28_night.png",
+        "29_day": "media/29_day.png",
+        "29_night": "media/29_night.png",
+        "30_day": "media/30_day.png",
+        "30_night": "media/30_night.png",
+        "31_day": "media/31_day.png",
+        "31_night": "media/31_night.png",
+        "32_day": "media/32_day.png",
+        "32_night": "media/32_night.png",
+        "33_day": "media/33_day.png",
+        "33_night": "media/33_night.png",
+        "34_day": "media/34_day.png",
+        "34_night": "media/34_night.png",
+        "35_day": "media/35_day.png",
+        "35_night": "media/35_night.png",
+        "default": "media/day.png" 
     };
-
-    const getLocalIcon = (pictocode, isDaylight) => {
-        const key = `${pictocode}_${isDaylight ? "day" : "night"}`;
+    const getLocalIcon = (code, isDay) => {
+        const key = `${code}_${isDay ? "day" : "night"}`;
         return pic[key] || pic["default"];
     };
 
-
-
     for (let i = 0; i < times.length; i += 24) {
         const date = new Date(times[i]);
-        const day = date.toLocaleDateString("fi-FI", {
-            weekday: "short",
-            day: "numeric",
-            month: "short"
-        });
-
+        const day = date.toLocaleDateString("fi-FI", { weekday: "short", day: "numeric", month: "short" });
         const temp = Math.round(temps[i]);
         const rain = rainProbs[i];
         const code = icons[i];
-        const isDay = isDaylightArr[i]
-        const iconName = getLocalIcon(code, isDay);
+ 
+        const isDay = data.data_1h.isdaylight[i] === 1;
+        const iconName = getLocalIcon(code, isDay) || "media/day.png";
 
         const li = document.createElement("li");
-        li.innerHTML = `
-            <h4>${day}</h4>
-            <img src="${iconName}" alt="Weather icon ${code}" style="width:40px;height:40px;">
-            <p>${temp}°C</p>
-            <p>Rain probability: ${rain}%</p>
-        `;
+        li.innerHTML = `<h4>${day}</h4>
+        <img src="${iconName}" alt="Weather Icon">
+        <p>${temp}°C</p>
+        <p>Rain probability: ${rain}%</p>`;
         weather_items_list.appendChild(li);
     }
 
     const meteogram_img = document.getElementById("meteogram");
     const API_key = "7Z1Dk4QOVhbrBsSg";
-    const url = `https://my.meteoblue.com/images/meteogram?lat=${latitude}&lon=${longitude}&asl=279&tz=Europe%2FZurich&apikey=${API_key}&format=png&dpi=72&lang=en&temperature_units=C&precipitation_units=mm&windspeed_units=kmh`;
-    meteogram_img.src = url;
+    meteogram_img.src = `https://my.meteoblue.com/images/meteogram?lat=${latitude}&lon=${longitude}&asl=279&tz=Europe%2FZurich&apikey=${API_key}&format=png&dpi=72&lang=en&temperature_units=C&precipitation_units=mm&windspeed_units=kmh`;
 };
-
 
 
 const get_location = (callback)=>{
@@ -230,3 +218,12 @@ const get_location = (callback)=>{
 
 getData();
 getFutureData();
+
+
+const logError = (message) => {
+    const errorDiv = document.getElementById("error-log");
+    if (errorDiv) {
+        errorDiv.textContent = message;
+    }
+};
+
