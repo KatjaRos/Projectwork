@@ -7,7 +7,8 @@
  // https://openweathermap.org/current
  // geolocation from browser
   //and https://open-meteo.com/ for 24-hour weather
-
+  // and https://www.youtube.com/watch?v=HS7GfTuJgA8&embeds_referring_euri=https%3A%2F%2Fwww.bing.com%2F&embeds_referring_origin=https%3A%2F%2Fwww.bing.com&source_ve_path=Mjg2NjY
+// https://www.youtube.com/watch?v=f0U8PP6Kf4c
 const getData  = async() => {
     const url = "https://api.openweathermap.org/data/2.5/weather";
     const API_key = "35ec31ba8dffe480f7c0aa178f1ae6e8";
