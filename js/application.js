@@ -1,10 +1,17 @@
 
-
+//Project work 2, Weather application, Katja Rossi 1067110-->
+// got help from: https://www.geeksforgeeks.org/javascript/build-a-weather-app-in-html-css-javascript/
+ // and from:  https://www.w3schools.com/html/html5_geolocation.asp 
+ // API:s  from: 
+ // www.meteoblue.com+weather-icons,
+ // https://openweathermap.org/current
+ // geolocation from browser
+  //and https://open-meteo.com/ for 24-hour weather
 
 const getData  = async() => {
     const url = "https://api.openweathermap.org/data/2.5/weather";
     const API_key = "35ec31ba8dffe480f7c0aa178f1ae6e8";
-    const initial_city = "Helsinki";
+    const initial_city = "Helsinki,FI";
     
     get_location(async (coords) =>{
 
@@ -80,6 +87,41 @@ const getFutureData= async() =>{
         }
     });
 };
+const getHourlyData = async () => {
+    const url = "https://api.open-meteo.com/v1/forecast";
+    console.log("getHourlyData kutsuttu");
+    get_location(async (coords) => {
+        let latitude, longitude;
+        if (coords) {
+            latitude = coords.latitude;
+            longitude = coords.longitude;
+        } else {
+            latitude = 60.1699;
+            longitude = 24.9384;
+        }
+
+        try {
+            const res = await fetch(
+                `${url}?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,wind_speed_10m&forecast_days=1&timezone=auto`
+            );
+            if (!res.ok) {
+                return;
+            }
+            const data = await res.json();
+
+            if (data && data.hourly && data.hourly.time) {
+                show24hrWeather(data);
+            } else {
+                console.warn("No data.");
+            }
+
+        } catch (e) {
+            console.error("Fetch failed:", e);
+        }
+    });
+};
+
+
 
 const showFutureWeather = (data, latitude, longitude) => {
     const weather_items_list = document.getElementById("items-list");
@@ -193,7 +235,26 @@ const showFutureWeather = (data, latitude, longitude) => {
     const API_key = "7Z1Dk4QOVhbrBsSg";
     meteogram_img.src = `https://my.meteoblue.com/images/meteogram?lat=${latitude}&lon=${longitude}&asl=279&tz=Europe%2FZurich&apikey=${API_key}&format=png&dpi=72&lang=en&temperature_units=C&precipitation_units=mm&windspeed_units=kmh`;
 };
+const show24hrWeather= (data)=>{
+    const times = data.hourly.time;
+    const temps = data.hourly.temperature_2m;
+    const winds = data.hourly.wind_speed_10m;
+    const hour_list = document.getElementById("hourly-list");
+    hour_list.innerHTML ="";
+    for (let i = 0; i < 24; i++){
+        const time = new Date(times[i]).toLocaleTimeString("fi-FI",{
+            hour: "2-digit", minute: "2-digit"});
+        const temp =temps[i];
+        const wind = winds[i];
 
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${time}</strong><br>
+            ${temp}°C<br>
+            Wind: ${wind} m/s;
+        `;
+        hour_list.appendChild(li)
+    }
+};
 
 const get_location = (callback)=>{
 
@@ -218,12 +279,7 @@ const get_location = (callback)=>{
 
 getData();
 getFutureData();
+getHourlyData();
 
 
-const logError = (message) => {
-    const errorDiv = document.getElementById("error-log");
-    if (errorDiv) {
-        errorDiv.textContent = message;
-    }
-};
 

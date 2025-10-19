@@ -46,7 +46,14 @@ body {
     color: #415a67;
 }
 
-
+.hourly-weather{
+    background-color: #f6d7ef; 
+    padding: 20px;
+    border-radius: 8px;
+}
+.hourly-weather h3 {
+    margin-top: 0;
+}
 
 .weather-out-current {
     background-color: #ffdbfd; 
@@ -68,10 +75,43 @@ body {
     border-radius: 8px;
 }
 
+
 .weather-out-future h3 {
     margin-top: 0;
 }
 
+
+#hourly-list {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 5px; 
+    list-style: none; 
+    padding: 0;
+    margin-top: 15px;
+}
+
+
+#hourly-list li {
+    background-color: #e0f2f1; 
+    border-radius: 6px; 
+    padding: 10px; 
+    width: 100px;
+    text-align: center; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s; 
+}
+
+
+#hourly-list li strong {
+    color: #0288d1; 
+    font-size: 16px;
+}
+
+
+#hourly-list li p {
+    margin: 5px 0;
+    font-size: 14px;
+}
 
 .future-days-container,
 #items-list {
@@ -110,19 +150,19 @@ body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 @media (max-width: 1024px) {
-    #items-list li {
+    #items-list li, #hourly-list li {
         flex: 1 1 calc(25% - 15px);
     }
 }
 
 @media (max-width: 800pxx) {
-    #items-list li {
+    #items-list li, #hourly-list li {
         flex: 1 1 calc(33.3% - 15px); 
     }
 }
 
 @media (max-width: 480px) {
-    #items-list li {
+    #items-list li, #hourly-list li {
         flex: 1 1 calc(33.3% - 15px);
     }
 }
